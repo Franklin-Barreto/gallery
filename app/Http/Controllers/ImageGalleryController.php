@@ -10,7 +10,7 @@ class ImageGalleryController extends Controller
     
     public function index()
     {
-        return view('gallery')->with('images', ImageGallery::all());
+        return view('gallery')->with('images', ImageGallery::paginate(9));
     }
     
     public function upload(Request $request)
@@ -22,9 +22,12 @@ class ImageGalleryController extends Controller
         $imageName = uniqid() . $image->getClientOriginalName();
         $path = storage_path('app\public\\');
         $image->move($path, $imageName);
-        Image::make($path . $imageName)->resize(200, null, function ($constraint) {
+/*        Image::make($path . $imageName)->resize(200, null, function ($constraint) {
             $constraint->aspectRatio();
         })
+        ->save($path.'thumbs\\' . $imageName);*/
+        
+        Image::make($path . $imageName)->resize(240, 200)
         ->save($path.'thumbs\\' . $imageName);
         
         $imagemodel = new ImageGallery();
