@@ -1,11 +1,11 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateImageGalleriesTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -15,7 +15,10 @@ class CreateImageGalleriesTable extends Migration
     {
         Schema::create('image_galleries', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('title', 100);
+            $table->string('image', 255);
+            $table->integer('download');
+            $table->integer('count');
         });
     }
 
