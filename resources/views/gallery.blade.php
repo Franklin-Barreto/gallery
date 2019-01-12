@@ -25,35 +25,60 @@
 <body>
 	<div class="container">
 		<div class="row justify-content-md-center">
-			<div class="col-md-auto">
-				<h1>Image Gallery</h1>
-			</div>
-		</div>
-		<div class="row justify-content-md-center">
-			<form action="upload" method="post" enctype="multipart/form-data">
-				@csrf
-				<div class="form-group">
-					<input type="file" class="form-control" name="file" /> <input
-						type="text" placeholder="Title" name="title" />
+			<div class="row">
+				<div class="col-md-auto">
+					<h1>Image Gallery</h1>
 				</div>
-				<button class="btn btn-primary" type="submit">Upload</button>
-			</form>
+			</div>
+			<div class="row">
+				<div class="col-md-auto">
+					<form action="upload" method="post" enctype="multipart/form-data">
+						@csrf
+						<div class="form-group">
+							<input type="file" class="form-control" name="file" /> <input
+								type="text" placeholder="Title" name="title" />
+						</div>
+						<button class="btn btn-primary" type="submit">Upload</button>
+					</form>
+				</div>
+			</div>
 		</div>
 		<div class="row justify-content-md-center">
 			<div class="row">
 				<div class="wrap">
 					<div class="grid">
-				@foreach($images as $image)
-				<div class="grid__item">
-					<a id="{{$image->path}}" href="{{url('storage/'.$image->path)}}"
-						data-lightbox="{{$image->path}}"><img alt=""
-						src="{{url('storage/thumbs/'.$image->path)}}" /></a> 
-				</div>
-				@endforeach
+						@foreach($images as $image)
+						<div class="grid__item">
+							<div>
+								<a id="{{$image->path}}" href="{{url('storage/'.$image->path)}}"
+									data-lightbox="{{$image->path}}"><img alt=""
+									src="{{url('storage/thumbs/'.$image->path)}}" /></a>
+							</div>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="{{$image->path}}"><i
+										class="fa fa-eye" aria-hidden="true"></i></span>
+								</div>
+								<input type="text" name="view" class="form-control"
+									value="{{$image->view}}" aria-label="view" readonly="readonly"
+									aria-describedby="{{$image->path}}">
+							</div>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+								<a href="download/{{$image->path}}"> <span class="input-group-text" id="{{$image->path}}"><i
+											class="fa fa-download" aria-hidden="true"></i></span>
+									</a>
+								</div>
+								<input type="text" name="download" class="form-control"
+									value="{{$image->download}}" aria-label="download"
+									readonly="readonly" aria-describedby="{{$image->path}}">
+							</div>
+						</div>
+						@endforeach
 					</div>
 				</div>
 			</div>
 		</div>
-		{{ $images->links() }}
+		<div class="row justify-content-md-center">{{ $images->links() }}</div>
 	</div>
 </body>
