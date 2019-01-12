@@ -50,22 +50,22 @@
 						@foreach($images as $image)
 						<div class="grid__item">
 							<div>
-								<a id="{{$image->path}}" href="{{url('storage/'.$image->path)}}"
+								<a id="{{$image->id}}" href="{{url('storage/'.$image->path)}}"
 									data-lightbox="{{$image->path}}"><img alt=""
 									src="{{url('storage/thumbs/'.$image->path)}}" /></a>
 							</div>
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
-									<span class="input-group-text" id="{{$image->path}}"><i
+									<span class="input-group-text" id="{{$image->id}}"><i
 										class="fa fa-eye" aria-hidden="true"></i></span>
 								</div>
 								<input type="text" name="view" class="form-control"
 									value="{{$image->view}}" aria-label="view" readonly="readonly"
-									aria-describedby="{{$image->path}}">
+									aria-describedby="{{$image->id}}">
 							</div>
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
-								<a href="download/{{$image->path}}"> <span class="input-group-text" id="{{$image->path}}"><i
+								<a href="download/{{$image->id}}/{{$image->path}}"> <span class="input-group-text" id="{{$image->id}}"><i
 											class="fa fa-download" aria-hidden="true"></i></span>
 									</a>
 								</div>

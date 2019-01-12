@@ -14,7 +14,7 @@
 Route::get('/','ImageGalleryController@index');
 Route::post('upload','ImageGalleryController@upload');
 Route::get('show','ImageGalleryController@showFiles');
-Route::get('download/{name}','ImageGalleryController@download');
+Route::get('download/{id}/{name}','ImageGalleryController@download');
 
 Auth::routes();
 
