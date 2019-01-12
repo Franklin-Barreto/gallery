@@ -16,9 +16,9 @@ class CreateImageGalleriesTable extends Migration
         Schema::create('image_galleries', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 100);
-            $table->string('image', 255);
-            $table->integer('download');
-            $table->integer('count');
+            $table->string('path', 255);
+            $table->integer('download')->default(0);
+            $table->integer('view')->default(0);
         });
     }
 

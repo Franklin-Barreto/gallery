@@ -29,12 +29,17 @@
 			<form action="upload" method="post" enctype="multipart/form-data">
 				@csrf
 				<div class="form-group">
-					<input type="file" class="form-control" name="file" />
+					<input type="file" class="form-control" name="file" /> <input
+						type="text" placeholder="Title" name="title" />
 				</div>
 				<button class="btn btn-primary" type="submit">Upload</button>
 			</form>
+		</div>
+		<div class="row justify-content-md-center">
 			<div class="col-md-auto">
-				<h1>Image Gallery</h1>
+				@foreach($images as $image)
+				<img alt="" src="{{url('storage/thumbs/'.$image->path)}}" class="img-thumbnail" />
+				@endforeach
 			</div>
 		</div>
 	</div>
